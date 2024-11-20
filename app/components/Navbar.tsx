@@ -17,7 +17,7 @@ const links: linksProps[] = [
     { name: 'Tv Shows', href: '/home/shows' },
     { name: 'Movies', href: '/home/movies' },
     { name: 'Recently Added', href: '/home/recently' },
-    { name: 'My List', href: '/home/user/list' },
+    { name: 'My List', href: '/home/user' },
 ]
 export default function Navbar() {
     const pathName = usePathname();
@@ -43,7 +43,7 @@ export default function Navbar() {
                             ) : (
                                 <li>
                                     <Link
-                                        className="text-cyan-950 font-normal text-sm"
+                                        className="text-gray-300 font-normal text-sm"
                                         href={link.href}
                                     >
                                         {link.name}

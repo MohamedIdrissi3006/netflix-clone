@@ -2,9 +2,12 @@
 
 import { Heart, PlayCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Dhurjati } from "next/font/google";
 import { useState } from "react";
 import PlayVideoModel from "./PlayVideoModel";
+import { addTowatchlist, deleteFromWatchlist } from "../action";
+import { usePathname } from "next/navigation";
+
+
 interface iAppProps {
   title: string;
   overview: string;
@@ -29,7 +32,7 @@ export function MovieCard({
 }: iAppProps) {
   const data = { title }
   console.log(data)
-
+  const pathName = usePathname();
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -42,23 +45,20 @@ export function MovieCard({
       <div className="right-5 top-5 absolute z-10">
 
         {watchList ? (
-          <form action="">
-
-            <Button variant="outline" size='icon'>
-
+          <form action={deleteFromWatchlist}>
+            <input type="hidden" name="watchlistId" value={wachtListId} />
+            <input type="hidden" name="pathname" value={pathName} />
+            <Button variant="outline" size="icon">
               <Heart className="w-4 h-4 text-red-500" />
             </Button>
-
           </form>
         ) : (
-
-          <form action="">
-
-            <Button variant="outline" size='icon'>
-
-              <Heart className="w-4 h-4 " />
+          <form action={addTowatchlist}>
+            <input type="hidden" name="movieId" value={movieId} />
+            <input type="hidden" name="pathname" value={pathName} />
+            <Button variant="outline" size="icon">
+              <Heart className="w-4 h-4" />
             </Button>
-
           </form>
         )
 
